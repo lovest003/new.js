@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="style.css"> 
+   <link rel="stylesheet" href="/font-awe/css/all.min.css">
+    <title>Drag and Drop</title>
+</head>
+<body>
+        <h1>A drag and drop that helps you shapes your images to a pefect circle</h1>
+    <div class="container">
+        <div id="left">
+            <div class="list" draggable="true">
+                <img src="images/download-removebg-preview.png" alt=""> <i class=""></i>
+            </div>
+            <div class="list" draggable="true">
+                <img src="images/happy-angel-outdoors.jpg" draggable="true" class="list" id="borderr" alt=""  id="downloadImage" style="width: 200px; height: 200px;">
+            </div>
+            <div class="list" draggable="true">
+                <img src="images/beautiful-shot-waterfall-coming-down-from-mountains.jpg" draggable="true" class="list" id="border" alt=""  id="downloadImage" style="width: 200px; height: 200px;">
+               
+            </div>
+        </div>
+        <div id="right" title="Click on the frame to zoom Out and In" style="cursor: pointer;">
+            <a href="#" id="downloadButton" download="image.png" style="color: white;">Download Image</a>
+            <p>Drag and drop your images here</p>
+        </div>
+    </div>
+
+
+
+    <script>
+        let containerBox = document.querySelector(".container");
+        let leftBox = document.getElementById("left");
+        let rightBox = document.getElementById("right");
+        let lists = document.getElementsByClassName("list");
+        let borders = document.getElementById("border");
+        let borderss = document.getElementById("borderr");
+
+        for (list of lists) {
+            list.addEventListener("dragstart", function(e) {
+                let selected = e.target;
+
+                rightBox.addEventListener("dragover", function (e) {
+                    e.preventDefault();
+        downloadButton.style.opacity = "1";
+                });
+                rightBox.addEventListener("drop", function (e) {
+    e.preventDefault();
+    const droppedImage = selected.querySelector("img");
+    if (droppedImage) {
+        const imageUrl = "URL_TO_YOUR_IMAGE"; 
+        const downloadImage = document.getElementById("downloadImage");
+        let downloadButton = document.getElementById("downloadButton");
+
+        downloadImage.src = imageUrl;
+        downloadButton.href = imageUrl;
+    }
+    rightBox.appendChild(selected);
+    selected = null;
+    borders.style.borderRadius = "100%";
+    borderss.style.borderRadius = "100%";
+    list.style.borderRadius = "100%";
+});
+
+
+
+
+
+
+                leftBox.addEventListener("dragstart", function(e){
+                    let detect = e.target;
+                leftBox.addEventListener("dragover", function (e){
+                    e.preventDefault();
+                });
+                leftBox.addEventListener("drop", function (e){
+                    leftBox.appendChild(detect);
+                    detect = null;       
+        downloadButton.style.opacity = "0";
+                    borders.style.borderRadius = "0%";       
+                    borderss.style.borderRadius = "0%";       
+            rightBox.classList.toggle("homer");      
+                })
+                })
+            })
+        }
+
+
+        rightBox.addEventListener("click", function (e){
+            // alert("We;lcome home ");
+            rightBox.classList.toggle("homer");
+        })
+        leftBox.addEventListener("click", function (e){
+            // alert("We;lcome home ");
+            leftBox.classList.toggle("homer");
+        })
+
+    </script>
+</body>
+</html>
